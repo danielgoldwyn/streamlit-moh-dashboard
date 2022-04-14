@@ -3,6 +3,7 @@
 This project was created as proof of concept of using data provided by the Malaysian Ministry of Health on Covid-19 case numbers
 
 You can find the live version of this app [here](https://moh-covid.herokuapp.com/)!
+_due to this being a free Heroku account allow for upto 30 seconds for dyno to startup_
 
 ## Using this code in your local maching
 
@@ -49,9 +50,5 @@ python3 -m venv venv
 
 ## Additional notes
 
-1. Procfile, setup.sh, runtime.txt are only needed due to hosting a live verion of this app on Heroku. It is not needed if you are running this on localhost.
+1. Procfile, setup.sh, runtime.txt are only needed due to hosting a live version of this app on Heroku. It is not needed if you are running this on localhost.
 2. runtime.txt sets the python version as 3.8.10 due to some conflict when uploading to Heroku which by default uses a more current version. Once the bug has been cleared on Heroku's side this file may not be needed to deploy this app onto Heroku
-
-```
-
-```
