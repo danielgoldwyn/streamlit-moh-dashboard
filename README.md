@@ -6,15 +6,42 @@ You can find the live version of this app [here](https://moh-covid.herokuapp.com
 
 ## Using this code in your local maching
 
-1. Clone this repo to your computer.
-2. Create a virtual environment and install the dependancies from requirements.txt
-3. To install dependancies in virtual environment, first activate virtual environment and then key in
+1. Ensure computer has python 3 installed
+2. Clone this repo to your computer.
+3. Navigate to root of cloned files
+4. Create a virtual environment
+
+```shell
+python3 -m venv venv
+```
+
+5. Activate virtual environment
+
+   1. For linux/mac
+
+   ```bash
+   source venv/bin/activate
+   ```
+
+   2. For Windows (cmd.exe)
+
+   ```bash
+   venv/Scripts/activate.bat
+   ```
+
+   3. For Windows (powershell)
+
+   ```bash
+   venv/Scripts/Activate.ps1
+   ```
+
+6. To install dependancies in virtual environment, first activate virtual environment and then key in
 
 ```shell
  pip install -r requirements.txt
 ```
 
-4. Once all dependancies have been installed you can start the project on a localhost by typing
+7. Once all dependancies have been installed you can start the project on a localhost by typing
 
 ```shell
  streamlit run main.py
@@ -24,3 +51,7 @@ You can find the live version of this app [here](https://moh-covid.herokuapp.com
 
 1. Procfile, setup.sh, runtime.txt are only needed due to hosting a live verion of this app on Heroku. It is not needed if you are running this on localhost.
 2. runtime.txt sets the python version as 3.8.10 due to some conflict when uploading to Heroku which by default uses a more current version. Once the bug has been cleared on Heroku's side this file may not be needed to deploy this app onto Heroku
+
+```
+
+```
