@@ -45,7 +45,7 @@ def main():
     #get the total icu bed
     total_icu = get_sum(latest_date, 'beds_icu_covid')
 
-    #test pyplot
+    #barchart variables
     past_week = df_icu['date'].drop_duplicates().nlargest(7)
     date_filt = df_icu.loc[(df_icu['date'] >= past_week.iloc[-1]) & (df_icu['date'] <= past_week.iloc[0])]
 
@@ -59,6 +59,8 @@ def main():
     st.title('ICU Stats of Malaysia Covid Cases')
     st.write('Proof of concept using python streamlit to create a dashboard compiling quick statistics from the Malaysian Ministry of Health Github repository')
     st.write(f"Data as of {latest_date:%d-%b-%Y} from Malaysian Ministry of Health Github repo")
+    
+    # First row of daily statistics
     st.header('Quick view of daily ICU and Ventilator usage')
     col1, col2, col3, col4 = st.columns(4)
 
@@ -67,7 +69,7 @@ def main():
     col3.metric('Ventilator', latest_vent, f"{delta_vent:.2f}%", 'inverse')
     col4.metric('Vent Capacity', f"{latest_vent / total_vent * 100 :.0f}%" )
 
-
+    #Barchart
     st.header('7 day breakdown of ICU patients needing ventilators')
     fig, ax = plt.subplots()
     p1 = ax.bar(bar_chart_df.index.strftime('%d-%b'),bar_chart_df['vent_covid'], label="Need Vent")
