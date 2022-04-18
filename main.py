@@ -2,6 +2,7 @@ from cProfile import label
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.dates import DateFormatter
 
 icu_url = 'https://raw.githubusercontent.com/MoH-Malaysia/covid19-public/main/epidemic/icu.csv'
 
@@ -54,6 +55,15 @@ def main():
     bar_chart_df = barchart_df.groupby(barchart_df['date'])[['icu_covid','vent_covid']].sum()
     bar_chart_df['no_vent'] = bar_chart_df['icu_covid'] - bar_chart_df['vent_covid']
 
+    #function to create axis for line chart - does not return any value
+    def plot_axes():
+        states = date_filt['state'].drop_duplicates()
+        
+        for index, value in states.items():
+            icu_state = date_filt.loc[date_filt['state'] == value,['date','icu_covid']]
+            ax4.plot(icu_state['date'], icu_state['icu_covid'], label = value)
+            
+        return
 
     #START OF THE STREAMLIT WEBAPP
     st.title('ICU Stats of Malaysia Covid Cases')
@@ -83,6 +93,18 @@ def main():
     ax.bar_label(p2, label_type='center', labels=[find_ratio(e,'no_vent') for e in bar_chart_df.index])
     ax.bar_label(p2)
     st.pyplot(fig)
+
+    #Line Chart Code
+    st.header('ICU Cases by state')
+    st.write('*This figure to be updated comparing per 100,000 residents to give a better comparison of ICU situation by state')
+    fig4, ax4 = plt.subplots()
+    plot_axes()
+    myFmt = DateFormatter('%d-%b')
+    ax4.xaxis.set_major_formatter(myFmt)
+    ax4.set_xlabel('Date')
+    ax4.set_ylabel("ICU Cases")
+    ax4.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    st.pyplot(fig4)
 
     st.write('*more features to be added soon')
 
