@@ -96,7 +96,6 @@ def main():
 
     #Line Chart Code
     st.header('ICU Cases by state')
-    st.write('*This figure to be updated comparing per 100,000 residents to give a better comparison of ICU situation by state')
     fig4, ax4 = plt.subplots()
     plot_axes()
     myFmt = DateFormatter('%d-%b')
